@@ -1,0 +1,25 @@
+.order-alpha{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.order-alpha__title{
+  font-size: 1.6rem;
+  color: white;
+}
+
+.order-alpha__button{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  margin: 5px auto;
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.order-alpha__button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}

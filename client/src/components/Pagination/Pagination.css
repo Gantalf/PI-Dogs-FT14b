@@ -1,0 +1,27 @@
+.numbers-page{
+  display: flex;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 10px auto;
+  list-style: none;
+  border: 1px solid;
+  width: 500px;
+  background-color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+}
+
+.number {
+  border: 1px solid;
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: blanchedalmond;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.number:active{
+  color: red;
+}

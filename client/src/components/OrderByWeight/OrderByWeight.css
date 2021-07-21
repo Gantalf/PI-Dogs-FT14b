@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.container__title{
+  font-size: 1.6rem;
+  color: white;
+}
+
+.container__order--button{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  margin: 5px auto;
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.container__order--button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}

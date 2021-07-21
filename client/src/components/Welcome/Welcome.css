@@ -1,0 +1,60 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  background-image: url('../../assets/static/5.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.welcome-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 140px;
+  margin-left: 50px;
+
+  padding: 1rem;
+}
+
+.welcome-content h1{
+  font-size: 7.0rem;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: rgb(243, 243, 243);
+  border-bottom: 1px solid black;
+  width: 50%;
+  padding: 20px
+}
+
+.welcome-content .first{
+  margin-top: 30px;
+  font-size: 4rem;
+}
+
+.welcome-content p{
+  margin-top: 15px;
+  font-size: 4rem;
+  color: rgb(243, 243, 243);
+}
+
+.welcome-content button {
+  margin-top: 30px;
+  width: auto;
+  height: auto;
+  font-size: 2.5rem;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.welcome-content button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

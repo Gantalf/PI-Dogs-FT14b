@@ -1,0 +1,29 @@
+#container {
+  min-width: 100vh;
+  height: 100%;
+}
+
+.container__orders{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+}
+
+.container__button{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+  margin: 5px auto;
+  width: 150px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.16);
+}
+
+.container__button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+

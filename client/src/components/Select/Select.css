@@ -1,0 +1,13 @@
+.select{
+  display: flex;
+  margin: 10px;
+  position: relative;
+  bottom: 7px;
+}
+
+.select__sub--title{
+  font-size: 1.6rem;
+  color: white;
+  margin: 10px;
+}
+

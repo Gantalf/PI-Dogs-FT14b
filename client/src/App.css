@@ -1,5 +1,19 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  background-color: rgb(48, 44, 44);
+}
+
+
+
 .App {
   text-align: center;
+  
 }
 
 .App-logo {

@@ -1,0 +1,75 @@
+/* .main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 300px;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.main__title {
+  color: white;
+  font-size: 25px;
+}
+
+.input {
+  background-color: black;
+  border: 2px solid white;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Muli', sans-serif;
+  font-size: 16px;
+  height: 50px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 0px 20px;
+  width: 70%;
+}
+
+::placeholder {
+  color: white;
+} */
+
+h1 {
+  font-size: 3.8rem;
+  margin: 20px;
+  color: rgb(230, 224, 215);
+}
+
+.main-input {
+  width: 530px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.main-input-container {
+  width: 525px;
+  border-radius: 100px;
+  border: 1px solid #dfe1e5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+.main-input input {
+  width: 450px;
+  height: 44px;
+  border: none;
+  outline: none;
+}
+.main-input-container:hover {
+  box-shadow: 0 1px 6px 0 #20212447;
+  border-color: #dfe1e500;
+}
+.main-input .search-icon {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Vector_search_icon.svg/945px-Vector_search_icon.svg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border: none;
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  opacity: 0.45;
+  cursor: pointer;
+}
