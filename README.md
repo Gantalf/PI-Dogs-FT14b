@@ -22,7 +22,7 @@
 
 #### Instalación
 
-En lient y api
+En client y api
 
 ```shell
 npm install
