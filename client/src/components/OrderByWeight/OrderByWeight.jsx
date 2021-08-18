@@ -21,6 +21,7 @@ function OrderByWeight({ dogs, getOrderByAlWeight }) {
     if (tipo === 'descendente') {
       getOrderByAlWeight(tipo)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipo])
 
   return (

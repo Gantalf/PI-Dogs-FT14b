@@ -21,6 +21,7 @@ function OrderByAlphabetical({ dogs, getOrderByAlphabetical }) {
     if (tipo === 'descendente') {
       getOrderByAlphabetical(tipo)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tipo])
 
   return (

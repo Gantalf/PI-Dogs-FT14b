@@ -25,6 +25,9 @@ module.exports = (sequelize) => {
     Añosdevida: {
       type: DataTypes.STRING,
     },
+    Image: {
+      type: DataTypes.TEXT
+    }
   });
 };
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Multi from 'react-select';
 import { connect } from 'react-redux';
 import { postNewRaza, getTemperaments, getDogs } from '../../actions/index';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // [ ] Un formulario controlado con los siguientes campos
 // Nombre
 // Altura (Diferenciar entre altura mínima y máxima)
@@ -20,15 +21,32 @@ function Form(props) {
     Peso: 0,
     Añosdevida: 0,
     temperamentos: [],
-    global: props.dogs
+    global: props.dogs,
+    image: null
   })
+
+  function handleImage(e) {
+    var filesSelected = e.target.files;
+    if (filesSelected.length > 0) {
+      var fileToLoad = filesSelected[0];
+      var fileReader = new FileReader();
+      fileReader.onload = function (fileLoadedEvent) {
+        setState({
+          ...state,
+          image: fileLoadedEvent.target.result
+        })
+      };
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
 
   useEffect(() => {
     props.getTemperaments()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleChange = (e) => {
-    console.log(state)
+
     setState({
       ...state,
       [e.target.name]: e.target.value
@@ -36,22 +54,28 @@ function Form(props) {
   }
 
   const handleChangeCheck = (e) => {
-    console.log(state)
+    let value = [];
+    e.map(item => value.push((item.value).toString()))
+    console.log(value)
     setState({
       ...state,
-      temperamentos: [...state.temperamentos, e.target.value]
+      temperamentos: value
     })
   }
 
-  const handleClick = () => {
-    props.getDogs()
-  }
+
 
   const handleSubmit = (e) => {
+    console.log('state', state)
     e.preventDefault();
     props.postNewRaza(state);
     window.location = "http://localhost:3000/dogs"
   }
+
+
+  let tempOption = [];
+  props.temperaments.map(item => tempOption.push({ value: item.id, label: item.Nombre }))
+
 
   return (
     <div className='body'>
@@ -84,19 +108,33 @@ function Form(props) {
               <input onChange={(e) => handleChange(e)} type="text" name='Añosdevida' placeholder='Años de vida de la nueva raza' required />
             </label>
           </div>
+          <label className='select__temperament'>
+            <span>temperamentos</span>
+            <Multi isMulti name='temperamentos' closeMenuOnSelect={false} options={tempOption} onChange={(e) => handleChangeCheck(e)} />
+          </label>
+
+          <label className='select__img'>
+            <span>Sube una imagen :)</span>
+            <input type="file" name="image" id='inputFileToLoad' className="field" onChange={(e) => handleImage(e)} />
+          </label>
 
 
-          <ul className='container__temperamentos'>
+
+          {/* <ul className='container__temperamentos'>
 
             {
-              props.temperaments.map(item => <li className='set2'>
+              props.temperaments.map((item, index) => <li key={index} className='set2'>
                 <div className='tag'>
                   <input onChange={(e) => handleChangeCheck(e)} type="checkbox" name='temperamentos' value={item.id} /> <label>{item.Nombre}</label>
                 </div>
               </li>)
             }
 
-          </ul>
+          </ul> */}
+
+
+
+
 
 
           <div>

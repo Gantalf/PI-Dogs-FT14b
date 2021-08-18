@@ -13,11 +13,11 @@ function rootReducer(state = initialState, action) {
         dogsLoaded: action.payload,
         dogsRespaldo: action.payload
       }
-    case 'GET_DOGS_BREED':
-      return {
-        ...state,
-        dogsLoaded: action.payload
-      }
+    // case 'GET_DOGS_BREED':
+    //   return {
+    //     ...state,
+    //     dogsLoaded: action.payload
+    //   }
     case 'GET_TEMPERAMENTS':
       return {
         ...state,
@@ -35,7 +35,7 @@ function rootReducer(state = initialState, action) {
       }
     case 'GET_FILTER_FOR_TEMPERAMENT':
       let newArray = [...state.dogsRespaldo]
-      if (action.payload == '') {
+      if (action.payload === '') {
         return {
           ...state,
           dogsLoaded: newArray
@@ -47,9 +47,9 @@ function rootReducer(state = initialState, action) {
         }
       }
     case 'GET_ORDER_BY_ALPHABETICAL':
-      console.log('ordenamiento', action.payload)
+
       let copia = [...state.dogsLoaded];
-      if (action.payload == 'ascendente') {
+      if (action.payload === 'ascendente') {
         return {
           ...state,
           dogsLoaded: copia.sort(function (a, b) {
@@ -78,7 +78,7 @@ function rootReducer(state = initialState, action) {
       }
     case 'GET_ORDER_BY_WEIGHT':
       let respaldo = [...state.dogsLoaded];
-      if (action.payload == 'ascendente') {
+      if (action.payload === 'ascendente') {
         return {
           ...state,
           dogsLoaded: respaldo.sort(function (a, b) {

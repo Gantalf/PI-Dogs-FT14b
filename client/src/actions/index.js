@@ -1,31 +1,43 @@
-export function getDogs() {
+export function getDogs(nameBreed) {
   return function (dispatch) {
-    return fetch('http://localhost:3001/dogs')
-      .then(response => response.json())
-      .then(json => {
-        dispatch({
-          type: 'GET_DOGS',
-          payload: json
+    if (nameBreed) {
+      return fetch(`http://localhost:3001/dogs?name=${nameBreed}`)
+        .then(response => response.json())
+        .then(json => {
+          dispatch({
+            type: 'GET_DOGS',
+            payload: json
+          })
         })
-      })
-      .catch(res => { console.log(res) })
+        .catch(res => { console.log(res) })
+    } else {
+      return fetch('http://localhost:3001/dogs')
+        .then(response => response.json())
+        .then(json => {
+          dispatch({
+            type: 'GET_DOGS',
+            payload: json
+          })
+        })
+        .catch(res => { console.log(res) })
+    }
   }
 }
 
-export function getDogsBreed(nameBreed) {
-  return function (dispatch) {
-    console.log(nameBreed)
-    return fetch(`http://localhost:3001/dogs?name=${nameBreed}`)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({
-          type: 'GET_DOGS_BREED',
-          payload: json
-        })
-      })
-      .catch(res => { console.log(res) })
-  }
-}
+// export function getDogsBreed(nameBreed) {
+//   return function (dispatch) {
+
+//     return fetch(`http://localhost:3001/dogs?name=${nameBreed}`)
+//       .then(response => response.json())
+//       .then(json => {
+//         dispatch({
+//           type: 'GET_DOGS_BREED',
+//           payload: json
+//         })
+//       })
+//       .catch(res => { console.log(res) })
+//   }
+// }
 
 export function getTemperaments() {
   return function (dispatch) {

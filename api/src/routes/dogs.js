@@ -32,7 +32,20 @@ router.get('/dogs', async function (req, res) {
           }
         }
       })
-      console.log(dogsDb);
+
+      let nombreTemperamento = []
+
+      dogsDb.map(item => {
+        nombreTemperamento.push({
+          ID: item.ID,
+          Nombre: item.Nombre,
+          temperamentos: item.temperamentos.map(element => {
+            return element.Nombre
+          }).join(', '),
+          Peso: item.Peso,
+          image: item.Image
+        })
+      })
 
 
       const response = await fetch(` https://api.thedogapi.com/v1/breeds/search?q=${name}&api_key=${API_KEY}`)
@@ -48,7 +61,7 @@ router.get('/dogs', async function (req, res) {
           Peso: data[i].weight.metric
         });
       }
-      let arrayRespuesta = dogsDb.concat(firstEigth);
+      let arrayRespuesta = nombreTemperamento.concat(firstEigth);
 
       res.json(arrayRespuesta);
 
@@ -66,7 +79,7 @@ router.get('/dogs', async function (req, res) {
         include: Temperamento,
       })
 
-      nombreTemperamento = []
+      let nombreTemperamento = []
 
       dogsDb.map(item => {
         nombreTemperamento.push({
@@ -75,11 +88,11 @@ router.get('/dogs', async function (req, res) {
           temperamentos: item.temperamentos.map(element => {
             return element.Nombre
           }).join(', '),
-          Peso: item.Peso
+          Peso: item.Peso,
+          image: item.Image
         })
       })
 
-      console.log(nombreTemperamento);
 
       //name, img, temp
       let firstEigth = [];
@@ -116,50 +129,43 @@ router.get('/dogs', async function (req, res) {
 router.get('/dogs/:idRaza', async function (req, res) {
   const { idRaza } = req.params;
   try {
-    const raza = await Raza.findByPk(idRaza, {
+
+    const dogsDb = await Raza.findByPk(idRaza, {
       include: Temperamento
     })
 
-    nombreTemperamento = []
-
-    dogsDb.map(item => {
-      nombreTemperamento.push({
-        ID: item.ID,
-        Nombre: item.Nombre,
-        Altura: item.Altura,
-        Peso: item.Peso,
-        Añosdevida: item.Añosdevida,
-        temperamentos: item.temperamentos.map(element => {
-          return element.Nombre
-        }).join(', ')
-      })
-    })
-
-    let razaSend = {
-      name: raza.name,
-      temperamentos: raza.temperament,
-      //hace una imagen desde local
-      height: raza.height.metric,
-      weight: raza.weight.metric,
-      life_span: raza.life_span
+    let nombreRaza = {
+      name: dogsDb.dataValues.Nombre,
+      height: dogsDb.dataValues.Altura,
+      weight: dogsDb.dataValues.Peso,
+      life_span: dogsDb.dataValues.Añosdevida,
+      temperamentos: dogsDb.dataValues.temperamentos.map(element => {
+        return element.Nombre
+      }).join(', '),
+      image: dogsDb.dataValues.Image
     }
-    res.json(razaSend)
+
+
+    res.json(nombreRaza)
   } catch {
+    try {
+      const response = await fetch(`https://api.thedogapi.com/v1/breeds/${idRaza}?api_key=${API_KEY}`)
+      const data = await response.json();
 
+      let raza = {
+        name: data.name,
+        temperamentos: data.temperament,
+        image: data.reference_image_id,
+        height: data.height.metric,
+        weight: data.weight.metric,
+        life_span: data.life_span
+      }
 
-    const response = await fetch(`https://api.thedogapi.com/v1/breeds/${idRaza}?api_key=${API_KEY}`)
-    const data = await response.json();
-
-    let raza = {
-      name: data.name,
-      temperamentos: data.temperament,
-      image: data.reference_image_id,
-      height: data.height.metric,
-      weight: data.weight.metric,
-      life_span: data.life_span
+      res.json(raza);
+    } catch {
+      res.send('ocurrio un error')
     }
 
-    res.json(raza);
   }
 
 

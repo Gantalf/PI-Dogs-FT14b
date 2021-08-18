@@ -25,8 +25,8 @@ function Select({ temperaments, getTemperaments, getFilterForTemperament }) {
 
   //se monta dos, porque? no hay porque.
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     getTemperaments()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 
@@ -37,7 +37,7 @@ function Select({ temperaments, getTemperaments, getFilterForTemperament }) {
         <h2 className='select__sub--title'>Filtra por temperamento</h2>
         <input className='select__input' onChange={(e) => handleChange(e)} name='temperamento' list="temperamentos" />
         <datalist id="temperamentos" >
-          {temperaments.map(item => <option value={item.Nombre}></option>)}
+          {temperaments.map((item, index) => <option key={index} value={item.Nombre}></option>)}
         </datalist>
         <button type="submit">Buscar</button>
       </div>

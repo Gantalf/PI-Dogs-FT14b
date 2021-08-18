@@ -63,3 +63,19 @@
   font-size: 1.4rem;
   margin: 10px 0px;
 }
+
+.container__loading{
+  width: 30%;
+  height: 30%;
+  margin: 100px auto;
+}
+
+.container__loading h2{
+  font-size: 4rem;
+  color: white;
+}
+
+.img__loading{
+  width: 100%;
+  height: 100%;
+}

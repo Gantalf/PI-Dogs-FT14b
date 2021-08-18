@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import './CardItem.css';
 
-import imagDefaul from '../../assets/static/jamie-street-MoDcnVRN5JU-unsplash.jpg';
+import defaultImg from '../../assets/static/jamie-street-MoDcnVRN5JU-unsplash.jpg';
 
 export default function CardItem(props) {
-  console.log('cardItem', props)
+
   const { id, name, image, temperament = [] } = props;
 
   let arrayToString = [];
@@ -16,16 +16,17 @@ export default function CardItem(props) {
     temperamentFinal = temperament;
   }
 
-
-
   return (
     <div className='card__item'>
 
       <img
         className='card__item--img'
-        src={image}
+        src={(image) ? image : defaultImg}
         onError={(e) => {
-          if (e.target.src.includes('.jpg')) {
+          if (e.target.src.includes('undefined')) {
+            e.target.onerror = null;
+            e.target.src = defaultImg
+          } else if (e.target.src.includes('.jpg')) {
             e.target.onerror = null;
             e.target.src = image.replace('jpg', 'png')
           }

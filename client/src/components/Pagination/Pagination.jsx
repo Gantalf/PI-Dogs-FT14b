@@ -5,7 +5,7 @@ import Cards from '../Cards/Cards';
 import CardItem from '../CardItem/CardItem';
 import './Pagination.css'
 
-import { getDogs, getDogsBreed } from '../../actions/index';
+import { getDogs } from '../../actions/index';
 
 function Pagination({ dogsLoaded, getDogs }) {
 
@@ -47,17 +47,31 @@ function Pagination({ dogsLoaded, getDogs }) {
     pageNumbers.push(i);
   }
 
-  const renderPageNumbers = pageNumbers.map(number => {
-    return (
-      <li
-        className='number'
-        key={number}
-        id={number}
-        onClick={handleClick}
-      >
-        {number}
-      </li>
-    );
+  const renderPageNumbers = pageNumbers.map((number, index) => {
+    if (number === state.currentpage) {
+      return (
+        <li
+          className='number-active'
+          key={index}
+          id={number}
+          onClick={handleClick}
+        >
+          {number}
+        </li>
+      );
+    } else {
+      return (
+        <li
+          className='number'
+          key={index}
+          id={number}
+          onClick={handleClick}
+        >
+          {number}
+        </li>
+      );
+    }
+
   });
 
 
@@ -66,7 +80,7 @@ function Pagination({ dogsLoaded, getDogs }) {
       <Cards>
 
         {
-          renderTodos.map(render => <CardItem id={render.props.children.ID} name={render.props.children.Nombre} image={render.props.children.image} temperament={render.props.children.temperamentos} />)
+          renderTodos.map((render, index) => <CardItem key={index} id={render.props.children.ID} name={render.props.children.Nombre} image={render.props.children.image} temperament={render.props.children.temperamentos} />)
         }
       </Cards>
       <ul id="page-numbers" className='numbers-page'>
